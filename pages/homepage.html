@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Home popupMessage</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link href="styles/homestyle.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script src="Javascript/home.js"></script>
+</head>
+<body>
+ <header>
+    <img src="webresources/UC-College-Logo.png" alt="Logo" class="logo">
+    <div class="hamburger">
+        <ion-icon name="menu-outline"></ion-icon>
+    </div>
+    <nav class="navigation">
+        <a href="#" class="nav-link">About</a>
+        <a href="#footer" class="nav-link">Contact</a>
+        <a href="registerationpage.html" class="nav-link">Register</a>
+        <button class="btnLogin-popup">Login</button>
+    </nav>
+</header>
+
+<div class="hero">
+  <video autoplay muted loop id="bgvedio" poster="webresources/poster.HEIC">
+    <source src="webresources/UC-College-Intro.mp4" type="video/mp4">
+  </video>
+  <div class="heading-college">
+    <div class="sliding-box">
+      <img src="webresources/uc-logo.png" alt="College Logo" class="sliding-logo">
+    </div>
+    <h1 class="animated-heading">Union Christian College, Aluva</h1>
+  </div>
+</div>
+
+
+<div class="wrapper">
+    <span class="icon-close"><ion-icon name="close-outline"></ion-icon></span>
+   <div class="form-box login">
+    <h2>Login</h2>
+        <div id="form">
+            <div class="input-box">
+                <span class="icon"><ion-icon name="person-circle-outline"></ion-icon></span>
+                <input type="username" id="username" autocomplete="off" required>
+                <label>Username</label>
+                 <span id="username-error" class="error"></span>
+            </div>
+            <div class="input-box">
+                <span class="icon"><ion-icon name="lock-closed-outline"></ion-icon></span>
+                <input type="password" id="password"  required>
+                <label>Password</label>
+                 <span id="password-error" class="error"></span>
+        </div>
+
+            <div class="remember" id="remember">
+                <label><input type="checkbox" id="remember">Remember me</label>
+            </div>
+            <button type="button" class="btn" id="login-btn" >Login</button>
+            <div class="login-register">
+                <p>Don't have an account? <a href="registerationpage.html" class="register-link">Register</a></p>
+            </div>
+        </div>
+   </div>
+  </div>
+ <div class="overlay"></div>
+   <div id="customPopup" class="popup-overlay">
+    <div class="popup-box">
+      <span class="close-btn" ><ion-icon name="close-outline" ></ion-icon></span>
+      <div class="popup-message" id="popupMessage"></div>
+      <button class="popup-ok" name="popup-ok">OK</button>
+    </div>
+  </div>
+  <div>
+    <span></span>
+  </div>
+
+  <footer class="site-footer" id="footer">
+  <div class="container">
+    <div class="main-section">
+      <div class="left-column">
+        <img src="webresources/UC-College-Logo.png" alt="Union Christian College Logo" class="logofooter">
+        <div class="description">
+          At UC College, we bridge the gap between education and industry through strong corporate partnerships,
+          career training, and hands-on internships. Our dedicated Placement Cell ensures that students are prepared
+          to thrive in competitive job markets and secure top opportunities globally. Founded in 1921, Union Christian
+          College, Aluva has been a pioneer in academic excellence.
+        </div>
+      </div>
+
+      <div class="right-column">
+        <div class="contact-info">
+          <div class="contact-box contact">
+            <div class="icon-label">
+              <ion-icon name="call-outline"></ion-icon>
+              <label>Contact</label>
+            </div>
+            <div class="contact-text">0484 2609194</div>
+            <div class="contact-text">+917012626868</div>
+          </div>
+          <div class="contact-box">
+            <div class="icon-label">
+              <ion-icon name="mail-outline"></ion-icon>
+              <label>Email</label>
+            </div>
+            <div class="contact-text">ucc@uccollege.edu.in</div>
+          </div>
+        </div>
+
+        <div class="contact-box">
+          <div class="icon-label">
+            <ion-icon name="location-outline"></ion-icon>
+            <label>Location</label>
+          </div>
+          <div class="contact-text">
+            Union Christian College, Post Box: 5 Aluva - 683102 Kerala, India
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-inner">
+    <nav class="socials" aria-label="Social links">
+      <a class="social" href="https://www.linkedin.com/" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+      <a class="social" href="https://www.facebook.com/" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+      <a class="social" href="https://www.youtube.com/" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+      <a class="social" href="https://www.instagram.com/" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+      <a class="social" href="https://x.com/" aria-label="X (Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
+    </nav>
+    <p class="copyright">
+      © 2025 UC College Aluva. All rights reserved.
+  </div>
+</footer>
+
+
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+</body>
+</html>

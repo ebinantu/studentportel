@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Office Portal</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+  <link rel="stylesheet" href="styles/office.css">
+  <script src="Javascript/staff.js" defer></script>
+</head>
+<body>
+  <div class="topbar">
+    <header>
+      <div class="logo-box">
+       <img src="webresources/UC-College-Logo.png" alt="UC College Logo">
+      </div>
+      <img src="" alt="Staff" class="profile-pic" id="profilePic">
+      <div class="profile-card" id="profileCard">
+        <button class="close-btn" id="closeBtn">
+          <ion-icon name="close"></ion-icon>
+        </button>
+        <img src="" alt="Staff" id="popupPic">
+        <h2><span id="staffNameText">Admin Office</span></h2>
+      
+        <div class="info">
+          <p><strong>Staff ID:</strong><span id="staffidText"> OFF-ADM-01</span></p>
+          <br>
+          <p><strong>Role:</strong> <span id="staffroleText"> Administrator</span></p>
+          <br>
+          <p><strong>Department:</strong> <span id="departmentText"> Main Office</span></p>
+        </div>
+        <div class="logout-btn-container">
+          <button class="logout-btn" id="logoutBtn">
+            <ion-icon name="log-out-outline"></ion-icon> Logout
+          </button>
+        </div>
+      </div>
+    </header>
+    <nav>
+      <ul>
+        <li data-section="officeProfileSection">OFFICE PROFILE</li>
+        <li data-section="pushNotificationSection">PUSH NOTIFICATIONS</li>
+        <li data-section="feeRegistrationSection">FEES REGISTRATION</li>
+        <li data-section="certificateVerifySection">CERTIFICATE VERIFY</li>
+        <li data-section="statementSection">STATEMENT</li>
+      </ul>
+    </nav>
+  </div>
+
+  <div class="content">
+    <div id="officeProfileSection" class="section active">
+      <h1 align="center" class="pd-heading">Office Profile</h1>
+      <div>
+        <img src="" alt="Office Staff" class="profile-pic-large" id="ProfileSectionPic">
+      </div>
+      <div class="profile-details">
+        <div class="form-group">
+          <label>Staff Name</label>
+          <input type="text" value="" id="staffName" readonly>
+        </div>
+        <div class="form-group">
+          <label>Staff Id</label>
+          <input type="text" value="" id="staffid" readonly>
+        </div>
+        <div class="form-group">
+          <label>Staff Role</label>
+          <input type="text" value="" id="staffrole" readonly>
+        </div>
+        <div class="form-group">
+          <label>Department</label>
+          <input type="text" value="" id="department" readonly>
+        </div>
+        <div class="form-group">
+          <label>Phone Number</label>
+          <input type="text" value="" id="phoneNumber" readonly>
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" value="" id="staffemail" readonly>
+        </div>
+        <div class="form-group address-row">
+          <label>Address</label>
+          <textarea id="staffaddress" readonly>Union Christian College, Aluva - 683102, Kerala, India</textarea>
+        </div>
+      </div>
+    </div>
+
+    <div id="pushNotificationSection" class="section">
+        <h2 align="center">Push Notifications</h2>
+        <p>Send notifications to students and office staff.</p>
+        <div class="certificate-form-group">
+            <label for="notificationTitle">Notification Title</label>
+            <input type="text" id="notificationTitle" placeholder="Enter a short, clear title">
+        </div>
+        <div class="certificate-form-group">
+            <label for="specificdept">Department</label>
+            <select id="specificdept">
+                <option value="all" selected disabled>Select the Department</option>
+                <option value="allDepts">All the Department</option>
+                <option value="Computer Science">Computer Science</option>
+                <option value="History">History</option>
+                <option value="Botany">Botany</option>
+                <option value="English">English</option>
+                <option value="Malayalam">Malayalam</option>
+                <option value="Economics">Economics</option>
+                <option value="Chemistry">Chemistry</option>
+                <option value="maths">Mathematics</option>
+                <option value="Physics">Physics</option>
+                <option value="zoology">Zoology </option>
+                <option value="bca_sf">BSM (Self-Finance)</option>
+                <option value="Cme_sf">Cme(Self-Finance)</option>
+                <option value="bcom_sf">B.Com (Self-Finance)</option>
+                <option value="biotech_sf">Biotechnology (Self-Finance)</option>
+            </select>    
+        </div>
+        <div class="certificate-form-group">
+            <label for="notificationMessage">Message</label>
+            <textarea id="notificationMessage" placeholder="Enter the full notification message here..." style="min-height: 120px;"></textarea>
+        </div>
+        <div class="subreq">
+            <button><ion-icon name="send-outline"></ion-icon> Send Notification</button>
+        </div>
+    </div>
+
+    <div id="feeRegistrationSection" class="section">
+        <h2 align="center">Fees Registration</h2>
+        <p>Choose the type of fee to register.</p>
+        <div class="form-toggle">
+            <label><input type="radio" id = "feeRegType"name="feeRegType" value="college" onclick="toggleFeeRegForm()" checked> College Related Fees</label>
+            <label><input type="radio" id="feeRegType" name="feeRegType" value="exam" onclick="toggleFeeRegForm()"> Exam Related Fees</label>
+        </div>
+
+        <div id="collegeFeeRegForm">
+            <h3 class="sub-heading">College Related Fee Details</h3>
+            <div class="certificate-form-group">
+                <label for="feeTitle">Fee Title</label>
+                <select id="feeTitle" onchange="updateDepartments()">
+                    <option value="college_fee">College Fee</option>
+                    <option value="union_fee">Union Fee</option>
+                    <option value="tuition_fee">Tuition Fee</option>
+                </select>
+            </div>
+            <div class="certificate-form-group">
+                <label for="collegeDepts">Department(s)</label>
+                <select id="collegeDepts"></select>
+            </div>
+            <div class="certificate-form-group">
+                <label for="collegeSemester">Semester</label>
+                <select id="collegeSemester">
+                    <option value="0">All Semesters</option>
+                    <option value="1">1</option><option value="2">2</option><option value="3">3</option>
+                    <option value="4">4</option><option value="5">5</option><option value="6">6</option>
+                </select>
+            </div>
+            <div class="certificate-form-group">
+                <label for="collegeYear">Year</label>
+                <input type="number" id="collegeYear" placeholder="e.g., 1,2,3,4,5,6,7,8">
+            </div>
+            <div class="certificate-form-group">
+                <label for="collegeCategory">Category</label>
+                <select id="collegeCategory">
+                    <option value="all">All Categories</option>
+                    <option value="general">General</option>
+                    <option value="sc_st">SC/ST</option>
+          
+                </select>
+            </div>
+            <div class="certificate-form-group">
+                <label for="collegeAmount">Amount (₹)</label>
+                <input type="number" id="collegeAmount" placeholder="Enter amount">
+            </div>
+            <div class="certificate-form-group">
+                <label for="collegeLastDate">Last Date</label>
+                <input type="date" id="collegeLastDate">
+            </div>
+            <div class="certificate-form-group">
+                <label for="feeStrutureC">feeStruture</label>
+                <input type="file" id="collegeFeeStructure" accept=".pdf">
+            </div>
+        </div>
+
+        <div id="examFeeRegForm" style="display: none;">
+            <h3 class="sub-heading">Exam Related Fee Details</h3>
+            <div class="certificate-form-group">
+                <label for="examId">Exam ID</label>
+                <input type="text" id="examId" placeholder="e.g., SEM6-2025(must be unique)">
+            </div>
+            <div class="certificate-form-group">
+                <label for="examName">Exam Name</label>
+                <input type="text" id="examName" placeholder="e.g., 6th Semester University Exam">
+            </div>
+            <div class="certificate-form-group">
+                <label for="examDept">Department</label>
+                <select id="examDept">
+                      <option value="alldep" selected disabled>Select the Department</option>
+                      <option value="Computer Science">Computer Science</option>
+                      <option value="History">History</option>
+                      <option value="Botany">Botany</option>
+                      <option value="English">English</option>
+                      <option value="Malayalam">Malayalam</option>
+                      <option value="Economics">Economics</option>
+                      <option value="Chemistry">Chemistry</option>
+                      <option value="maths">Mathematics</option>
+                      <option value="Physics">Physics</option>
+                      <option value="zoology">Zoology </option>
+                      <option value="bca_sf">BSM (Self-Finance)</option>
+                      <option value="Cme_sf">Cme(Self-Finance)</option>
+                      <option value="bcom_sf">B.Com (Self-Finance)</option>
+                      <option value="biotech_sf">Biotechnology (Self-Finance)</option>
+                </select>
+            </div>
+            <div class="certificate-form-group">
+                <label for="examSemester">Semester</label>
+                <select id="examSemester">
+                    <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option>
+                </select>
+            </div>
+            <div class="certificate-form-group">
+                <label for="examCategory">Category</label>
+                <select id="examCategory">
+                    <option value="allcat" selected disabled>All Categories</option>
+                    <option value="Genaral">General</option>
+                    <option value="Sc/st">SC</option>
+                </select>
+            </div>
+            <div class="certificate-form-group">
+                <label for="examAmount">Amount (₹)</label>
+                <input type="number" id="examAmount" placeholder="Enter fee amount">
+            </div>
+            <div class="certificate-form-group">
+                <label for="examDueDate">Due Date</label>
+                <input type="date" id="examDueDate">
+            </div>
+            <div class="certificate-form-group">
+                <label for="feeStrutureE">feeStruture</label>
+                <input type="file" id="examFeeStructure" accept=".pdf">
+            </div>
+        </div>
+        <div class="subreq">
+            <button id="registerFeeBtn"><ion-icon name="save-outline"></ion-icon> Register Fee</button>
+        </div>
+    </div>
+
+    <div id="certificateVerifySection" class="section">
+        <h2 align="center">Certificate Verification Queue</h2>
+        <p>Review and process certificate requests submitted by students.</p>
+        
+        <div id="verificationQueueContainer">
+            <p>Loading verification requests...</p>
+        </div>
+    </div>
+
+    <div id="statementSection" class="section">
+        <h2 align="center">View Statements</h2>
+        <p>Filter and view college or exam related fee statements.</p>
+        
+        <div class="form-toggle">
+            <label><input type="radio" name="statementType" value="college" onclick="toggleStatementForm()" checked> College Related Statement</label>
+            <label><input type="radio" name="statementType" value="exam" onclick="toggleStatementForm()"> Exam Related Statement</label>
+        </div>
+
+        <div id="collegeStatementForm">
+            <h3 class="sub-heading">Filter College Statements</h3>
+            <div class="certificate-form-group">
+                <label for="statementFeeTitle">Fee Title</label>
+                <select id="statementFeeTitle">
+                    <option value="" disabled selected>Select Fee Title</option>
+                    <option value="all">All</option>
+                    <option value="college_fee">College Fee</option>
+                    <option value="union_fee">Union Fee</option>
+                    <option value="tuition_fee">Tuition Fee</option>
+                </select>
+            </div>
+            <div class="certificate-form-group">
+                <label for="statementCollegeDept">Department</label>
+                <select id="statementCollegeDept">
+                    <option value="" disabled selected>Select the Department</option>
+                    <option value="all">All Departments</option>
+                    <option value="Computer Science">Computer Science</option>
+                    <option value="History">History</option>
+                </select>
+            </div>
+            <div class="certificate-form-group">
+                <label for="statementCollegeSem">Semester</label>
+                <select id="statementCollegeSem">
+                    <option value="" disabled selected>Select the Semester</option>
+                    <option value="all">All Semesters</option>
+                    <option value="1">1</option><option value="2">2</option><option value="3">3</option>
+                    <option value="4">4</option><option value="5">5</option><option value="6">6</option>
+                </select>
+            </div>
+            <div class="certificate-form-group">
+                <label for="statementCollegeYear">Year</label>
+                <input type="number" id="statementCollegeYear" placeholder="e.g., 2025">
+            </div>
+            <div class="subreq">
+                <button><ion-icon name="filter-outline"></ion-icon> Filter Statement</button>
+            </div>
+        </div>
+
+        <div id="examStatementForm" style="display: none;">
+            <h3 class="sub-heading">Filter Exam Statements</h3>
+            <div class="certificate-form-group">
+                <label for="statementExamId">Exam ID</label>
+                <input type="text" id="statementExamId" placeholder="e.g., SEM6-2025">
+            </div>
+            <div class="certificate-form-group">
+                <label for="statementExamDept">Department</label>
+                <select id="statementExamDept">
+                    <option value="" disabled selected>Select the Department</option>
+                    <option value="all">All Departments</option>
+                </select>
+            </div>
+            <div class="certificate-form-group">
+                <label for="statementExamSem">Semester</label>
+                <select id="statementExamSem">
+                    <option value="" disabled selected>Select the Semester</option>
+                    <option value="all">All Semesters</option>
+                </select>
+            </div>
+             <div class="subreq">
+                <button><ion-icon name="filter-outline"></ion-icon> Filter Statement</button>
+            </div>
+        </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="verificationModal">
+      <div class="modal-content">
+          <button class="modal-close" onclick="closeVerificationModal()">&times;</button>
+          <h3>Verification Details</h3>
+          <div class="modal-body">
+              <p><strong>Request ID:</strong> <span id="modalRequestId"></span></p>
+              <p><strong>Admission Number:</strong> <span id="modalAdmissionNo"></span></p>
+              <p><strong>Name:</strong> <span id="modalStudentName"></span></p>
+              <p><strong>Department:</strong> <span id="modalDepartment"></span></p>
+              <p><strong>Course:</strong> <span id="modalCourse"></span></p>
+              <p><strong>Year:</strong> <span id="modalYear"></span></p>
+              <p><strong>Request Message:</strong> <span id="modalMessage"></span></p>
+              <p><strong>Documents:</strong> <a href="#" id="modalDoc1" target="_blank">View Document 1</a></p>
+              <p><strong>Additional Documents:</strong> <a href="#" id="modalDoc2" target="_blank">View Document 2</a></p>
+              <p><strong>Signature:</strong> <a href="#" id="modalSignature" target="_blank">View Signature Image</a></p>
+          </div>
+          <div class="modal-footer">
+               <div id="rejection-reason" style="display: none; width: 100%; margin-bottom: 15px;">
+                  <label for="reason-text">Reason for Rejection:</label>
+                  <textarea id="reason-text" placeholder="Please provide a clear reason..."></textarea>
+               </div>
+              <button class="btn-reject" onclick="showRejection()">Reject</button>
+              <button class="btn-accept">Accept & Verify</button>
+          </div>
+      </div>
+  </div>
+
+  <div id="customPopup" class="popup-overlay">
+    <div class="popup-box">
+      <span class="close-btn" onclick="closePopup()"><ion-icon name="close-outline" ></ion-icon></span>
+      <div class="popup-message" id="popupMessage"></div>
+      <button class="popup-ok" onclick="closePopup()">OK</button>
+    </div>
+  </div>
+
+<script>
+  // --- Navigation Logic ---
+  const sections = document.querySelectorAll('.section');
+  const navLinks = document.querySelectorAll('nav ul li');
+
+  function showSection(id) {
+    sections.forEach(s => s.classList.remove('active'));
+    const target = document.getElementById(id);
+    if (target) target.classList.add('active');
+  }
+  
+  function highlightNav(targetId) {
+    navLinks.forEach(link => {
+        link.classList.remove('active');
+        if(link.dataset.section === targetId){
+            link.classList.add('active');
+        }
+    });
+  }
+
+  navLinks.forEach(item => {
+    item.addEventListener('click', () => {
+      const sectionId = item.dataset.section;
+      showSection(sectionId);
+      highlightNav(sectionId);
+    });
+  });
+
+  // --- Profile Card Logic ---
+  const profilePic = document.getElementById('profilePic');
+  const profileCard = document.getElementById('profileCard');
+  const closeBtn = document.getElementById('closeBtn');
+    profilePic.addEventListener('click', () => {
+      profileCard.classList.toggle('active');
+    });
+    closeBtn.addEventListener('click', () => {
+      profileCard.classList.remove('active');
+    });
+    document.addEventListener('click', (e) => {
+      if (!profileCard.contains(e.target) && e.target !== profilePic) {
+        profileCard.classList.remove('active');
+      }
+    });
+
+  // --- Fees Registration Logic ---
+  const collegeFeeForm = document.getElementById('collegeFeeRegForm');
+  const examFeeForm = document.getElementById('examFeeRegForm');
+  const feeTitleSelect = document.getElementById('feeTitle');
+  const collegeDeptsSelect = document.getElementById('collegeDepts');
+
+  const allDepts = `
+    <option value="all" selected disabled>Select the Department</option>
+    <option value="ComputerScience">Computer Science</option>
+    <option value="History">History</option>
+  `;
+  const selfFinanceDepts = `
+    <option value="bca_sf">BSM (Self-Finance)</option>
+    <option value="bcom_sf">B.Com (Self-Finance)</option>
+  `;
+
+  function toggleFeeRegForm() {
+      const selectedType = document.querySelector('input[name="feeRegType"]:checked').value;
+      if (selectedType === 'college') {
+          collegeFeeForm.style.display = 'block';
+          examFeeForm.style.display = 'none';
+      } else {
+          collegeFeeForm.style.display = 'none';
+          examFeeForm.style.display = 'block';
+      }
+  }
+
+  function updateDepartments() {
+      if (feeTitleSelect.value === 'tuition_fee') {
+          collegeDeptsSelect.innerHTML = selfFinanceDepts;
+      } else {
+          collegeDeptsSelect.innerHTML = allDepts;
+      }
+  }
+</script>
+</body>
+</html>

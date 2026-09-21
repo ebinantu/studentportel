@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Portal</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+  <link rel="stylesheet" href="sty.css">
+</head>
+<body>
+  <div class="topbar">
+    <header>
+      <div class="logo-box">
+       <img src="webresources/UC-College-Logo.png" alt="UC College Logo">
+      </div>
+      <img src="" alt="Student" class="profile-pic" id="profilePicheader">
+      <div class="profile-card" id="profileCard">
+        <button class="close-btn" id="closeBtn">
+        <ion-icon name="close"></ion-icon>
+        </button>
+        <img src="" alt="Student" id="popupPic">
+        <h2 id="studentName"><span id="studentNameText">John Doe</span></h2>
+      
+        <div class="info">
+          <p><strong>Register No:</strong><span id="registerNoText"> R2025001</span></p>
+          <br>
+          <p><strong>Admission No:</strong> <span id="admissionNoText"> 123456</span></p>
+          <br>
+          <p><strong>Department:</strong> <span id="departmentText"> Computer Science</span></p>
+          <br>
+          <p><strong>Semester:</strong> <span id="semesterText"> 6th Sem</span></p>
+        </div>
+        <div class="logout-btn-container">
+         <button class="logout-btn" onclick="logout()">
+        <ion-icon name="log-out-outline"></ion-icon> Logout
+          </button>
+        </div>
+      </div>
+    </header>
+    <nav>
+      <ul>
+        <li data-section="profileSection">PROFILE</li>
+        <li data-section="feesSection">FEES NOTIFICATIONS</li>
+        <li data-section="notificationSection">NOTIFICATIONS</li>
+        <li class="has-submenu" data-default="courseRequestSection">COURSE CERTIFICATE
+          <ul class="submenu">
+            <li data-section="courseRequestSection">Request</li>
+            <li data-section="courseStatusSection">Status</li>
+          </ul>
+        </li>
+        <li data-section="examSection">EXAMS</li>
+        <li data-section="facultySection">FACULTY COMMUNICATION</li>
+      </ul>
+    </nav>
+  </div>
+  <div class="content">
+    <div id="profileSection" class="section active">
+      <h1 align="center" class="pd-heading">Profile Details</h1>
+      <div>
+        <img src="" alt="Student" class="profile-pic-large" id="ProfilePic">
+      </div>
+     <div class="profile-details">
+  <div class="form-group">
+    <label for="fullName">Full Name</label>
+    <input type="text" id="fullName" value="" readonly>
+  </div>
+
+  <div class="form-group">
+    <label for="registerNo">Register No</label>
+    <input type="text" id="registerNo" value="" readonly>
+  </div>
+
+  <div class="form-group">
+    <label for="admissionNo">Admission No</label>
+    <input type="text" id="admissionNo" value="" readonly>
+  </div>
+
+  <div class="form-group">
+    <label for="department">Department</label>
+    <input type="text" id="department" value="" readonly>
+  </div>
+
+  <div class="form-group">
+    <label for="joinedDate">Joined Date</label>
+    <input type="text" id="joinedDate" value="" readonly>
+  </div>
+
+  <div class="form-group">
+    <label for="semester">Semester</label>
+    <input type="text" id="semester" value="" readonly>
+  </div>
+
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input type="email" id="email" value="" readonly>
+  </div>
+
+  <div class="form-group">
+    <label for="phone">Phone</label>
+    <input type="text" id="phone" value="" readonly>
+  </div>
+
+  <div class="form-group">
+    <label for="dob">Date of Birth</label>
+    <input type="text" id="dob" value="" readonly>
+  </div>
+
+  <div class="form-group">
+    <label for="gender">Gender</label>
+    <input type="text" id="gender" value="" readonly>
+  </div>
+
+  <div class="form-group">
+    <label for="category">Category</label>
+    <input type="text" id="category" value="" readonly>
+  </div>
+
+  <div class="form-group">
+    <label for="parentName">Parent Name</label>
+    <input type="text" id="parentName" value="" readonly>
+  </div>
+
+  <div class="form-group">
+    <label for="parentPhone">Parent Phone</label>
+    <input type="text" id="parentPhone" value="" readonly>
+  </div>
+
+  <br>
+
+  <div class="form-group address-row">
+    <label for="address">Address</label>
+    <textarea id="address" readonly></textarea>
+  </div>
+</div>
+
+      <br>
+      
+</div>
+  
+
+<div id="feesSection" class="section">
+  <h2>Fees Notifications</h2>
+  
+  <div class="notification-list" id="feeNotificationList">
+    </div>
+  
+  <p id="noFeesMessage" style="display: none;">You have no pending fees. 🎉</p>
+</div>
+
+
+
+ <div id="notificationSection" class="section">
+    <h2>Notifications</h2>
+    
+    <div class="notification-list" id="generalNotificationList">
+        </div>
+    
+    <p id="noGeneralNotificationsMessage" style="display: none;">
+        No new notifications right now. ✨
+    </p>
+</div>
+
+<div id="courseRequestSection" class="section">
+  <h2 align="center">Course Certificate Request</h2>
+  <br>
+  <p style="color: rgb(0, 0, 0);margin-left: 10px;"><i> (i) Please fill out the form below to request a course completion certificate.</i></p>
+  <br>
+  <div class="certificate-form-group"> 
+    <label for="AdmissionNO">Admission Number</label> 
+    <input type="text" id="AdmissionNO" placeholder="Admission Number"> 
+  </div>
+   <div class="certificate-form-group"> 
+    <label for="Name">Name</label> 
+    <input type="text" id="Name" placeholder="Name"> 
+  </div>
+   <div class="certificate-form-group"> 
+    <label for="Department">Department</label> 
+    <select id="Department">
+      <option value="Computer Science">Computer Science</option>
+      <option value="Information Technology">Information Technology</option>
+      <option value="Electronics">Electronics</option>
+    </select>
+  </div>
+   <div class="certificate-form-group"> 
+    <label for="Course">Course</label> 
+    <input type="text" id="Course" placeholder="Course Name"> 
+  </div>
+   <div class="certificate-form-group"> 
+    <label for="Year">Year</label> 
+    <input type="number" id="Year" placeholder="Current Year"> 
+  </div>
+  <div class="certificate-form-group">
+    <label for="courseMessage">Request Message</label>
+  <textarea id="courseMessage" placeholder="Register your request here..."></textarea>
+
+  </div>
+
+  <div class="upload-box">
+    <label for="uploadFile"><b>Upload Signature</b></label>
+    <input type="file" id="uploadFile" accept="image/*">
+  </div>
+  <p style="color: rgb(0, 0, 0);margin-left: 10px;"><i>(i) Supporting Documents For Faster verification</i></p>
+  <div class="upload-box">
+    <label for="uploadFile">Document 1</label>
+    <input type="file" id="uploadFile1" accept="image/*">
+  </div>
+  <div class="upload-box">
+    <label for="uploadFile">Document 2</label>
+    <input type="file" id="uploadFile2" accept="image/*">
+  </div>
+<br>
+   <div class="subreq"> <button id="courseSubmit">Submit Request</button></div>
+</div>
+
+<div class="section status-card" id="courseStatusSection">
+  <div class="application-id-group">
+            <label for="applicationid">Check Your Application Status</label>
+            <input type="text" id="applicationid" class="form-input" placeholder="Enter Application ID">
+            <button id="checkStatusBtn">Check Status</button>
+  </div>
+
+  <div id="status-display" style="display: none;">
+    <h2>Application Status</h2>
+    <div class="status-bar">
+      <div class="stage" data-stage-name="requested"><div class="stage-dot"></div><p>Requested</p></div>
+      <div class="stage" data-stage-name="verified"><div class="stage-dot"></div><p>Verified</p></div>
+      <div class="stage" data-stage-name="approved"><div class="stage-dot"></div><p>Approved</p></div>
+    </div>
+    <div id="status-message-block">
+        <h3 id="message-title"></h3>
+        <p id="message-description"></p>
+        <button id="download-btn">Download Certificate</button>
+    </div>
+   </div>
+  </div>
+
+
+    <div id="examSection" class="section">
+      <h2 align="center">Exam Registration</h2>
+      
+      <div class="profile-details" style="margin-bottom: 30px;">
+          <div class="form-group">
+              <label for="examStudentName">Student Name</label>
+              <input type="text" id="examStudentName" class="form-input" value="John Doe" >
+          </div>
+          <div class="form-group">
+              <label for="examSemester">Exam Code</label>
+              <input type="text" id="examCode" class="form-input" value="" >
+          </div>
+          <div class="form-group">
+              <label for="examRollNumber">Roll Number</label>
+              <input type="text" id="examRollNumber" class="form-input" value="R2025001" >
+          </div>
+          <div class="form-group">
+              <label for="examDepartment">Department</label>
+              <input type="text" id="examDepartment" class="form-input" value="Computer Science" >
+          </div>
+          <div class="form-group">
+              <label for="examCourse">Course</label>
+              <input type="text" id="examCourse" class="form-input" value="Bsc Computer Science" >
+          </div>
+          <div class="form-group">
+              <label for="examSemester">Semester</label>
+              <input type="text" id="examSemester" class="form-input" value="6th Sem" >
+          </div>
+          
+      </div>
+  
+      <div class="course-registration">
+          
+          <h3>Core Courses</h3>
+          <div class="course-entry">
+              <input type="text" class="form-input" placeholder="Course Code 1">
+              <input type="text" class="form-input" placeholder="Course Name 1">
+          </div>
+          <div class="course-entry">
+              <input type="text" class="form-input" placeholder="Course Code 2">
+              <input type="text" class="form-input" placeholder="Course Name 2">
+          </div>
+          <div class="course-entry">
+              <input type="text" class="form-input" placeholder="Course Code 3">
+              <input type="text" class="form-input" placeholder="Course Name 3">
+          </div>
+          <div class="course-entry">
+              <input type="text" class="form-input" placeholder="Course Code 4">
+              <input type="text" class="form-input" placeholder="Course Name 4">
+          </div>
+          <div class="course-entry">
+              <input type="text" class="form-input" placeholder="Course Code 5">
+              <input type="text" class="form-input" placeholder="Course Name 5">
+          </div>
+          <div class="course-entry">
+              <input type="text" class="form-input" placeholder="Course Code 5">
+              <input type="text" class="form-input" placeholder="Course Name 5">
+          </div>
+  
+          <h3 style="margin-top: 30px;">Complementary Courses</h3>
+          <div class="course-entry">
+              <input type="text" class="form-input" placeholder="Course Code 1">
+              <input type="text" class="form-input" placeholder="Course Name 1">
+          </div>
+          <div class="course-entry">
+              <input type="text" class="form-input" placeholder="Course Code 2">
+              <input type="text" class="form-input" placeholder="Course Name 2">
+          </div>
+          <div class="course-entry">
+            <input type="text" class="form-input" placeholder="Course Code 3">
+            <input type="text" class="form-input" placeholder="Course Name 3">
+          </div>
+  
+          <h3 style="margin-top: 30px;">Other Courses</h3>
+          <div class="course-entry">
+              <input type="text" class="form-input" placeholder="Course Code 1">
+              <input type="text" class="form-input" placeholder="Course Name 1">
+          </div>
+          <div class="course-entry">
+            <input type="text" class="form-input" placeholder="Course Code 2">
+            <input type="text" class="form-input" placeholder="Course Name 2">
+          </div>
+      </div>
+  <div class="edit-section" style="text-align: center; margin-top: 40px;">
+    <button class="edit-btn" id="registerExamBtn">Register for Exam</button>
+</div>
+    </div>
+    
+
+<div id="facultySection" class="section">
+
+     <div id="faculty">
+        <div class="faculty-list">
+            <div class="faculty-item" data-email="alice.s@example.com">
+                <div class="faculty-photo"></div>
+                <h3>Dr. Alice Smith</h3>
+                <h4>Principal</h4>
+                <div class="contact-details">
+                    <p><ion-icon name="call-outline"></ion-icon> <a href="tel:+919876543210">+91 9876543210</a></p>
+                    <p><ion-icon name="mail-outline"></ion-icon> <a href="mailto:alice.s@example.com">alice.s@example.com</a></p>
+                </div>
+            </div>
+            <div class="faculty-item" data-email="bob.j@example.com">
+                <div class="faculty-photo"></div>
+                <h3>Prof. Bob Johnson</h3>
+                <h4>Superintendent</h4>
+                <div class="contact-details">
+                    <p><ion-icon name="call-outline"></ion-icon> <a href="tel:+919123456780">+91 9123456780</a></p>
+                    <p><ion-icon name="mail-outline"></ion-icon> <a href="mailto:bob.j@example.com">bob.j@example.com</a></p>
+                </div>
+            </div>
+            <div class="faculty-item" data-email="carol.l@example.com">
+                <div class="faculty-photo"></div>
+                <h3>Dr. Carol Lee</h3>
+                <h4>Exam Cell</h4>
+                <div class="contact-details">
+                    <p><ion-icon name="call-outline"></ion-icon> <a href="tel:+919988776655">+91 9988776655</a></p>
+                    <p><ion-icon name="mail-outline"></ion-icon> <a href="mailto:carol.l@example.com">carol.l@example.com</a></p>
+                </div>
+            </div>
+            <div class="faculty-item" data-email="david.c@example.com">
+                <div class="faculty-photo"></div>
+                <h3>Prof. David Chen</h3>
+                <h4>H.O.D Computer Science</h4>
+                <div class="contact-details">
+                    <p><ion-icon name="call-outline"></ion-icon> <a href="tel:+919112233445">+91 9112233445</a></p>
+                    <p><ion-icon name="mail-outline"></ion-icon> <a href="mailto:david.c@example.com">david.c@example.com</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <button id="enquiryBtn" class="enquiry-btn">
+        <ion-icon name="mail-outline"></ion-icon>Make an Enquiry
+    </button>
+
+    <div id="formContainer" class="form-container">
+        <h2>Contact Us</h2>
+        <form action="#" method="POST">
+            <div class="form-group">
+                <label for="email">Department Email:</label>
+                <input type="email" id="departmentemail" name="email" class="form-input" placeholder="name@example.com" required>
+            </div>
+            <div class="form-group">
+              <label for="stduentEmail">Your Email:</label>
+              <input type="email" id="stduentEmail" name = "stduentEmail" class="form-input" required>
+            </div>
+            <div class="form-group">
+                <label for="subject">Subject</label>
+                <input type="text" id="subject" name="subject" class="form-input" placeholder="How can we help?" required>
+            </div>
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" class="form-textarea" placeholder="Enter your message here..." required></textarea>
+            </div>
+             <div class="form-group submit-group">
+                <button type="submit" class="submit-btn">
+                    <span>Send Message</span>
+                    <ion-icon name="send-sharp"></ion-icon>
+                </button>
+            </div>
+        </form>
+    </div>
+  </div>
+
+<div id="paymentOverlay" class="payment-overlay"></div>
+<div id="paymentModal" class="payment-modal">
+    <button class="payment-close-btn" id="closePaymentModal">&times;</button>
+    <h2>Pay with QR Code</h2>
+    
+    <p>Scan the QR code with your UPI app.</p>
+    <div class="qr-code-container">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=upi://pay?pa=college.payments@okhdfcbank&pn=Example%20College&am=2500.00&cu=INR" alt="QR Code for Payment">
+    </div>
+    
+    <p>After paying, enter your UPI ID for confirmation.</p>
+    <div class="form-group-payment">
+        <label for="upiIdConfirm">Your UPI ID</label>
+        <input type="text" id="upiIdConfirm" class="form-input" placeholder="example@upi">
+    </div>
+    
+    <button class="payment-btn" id="qrConfirmBtn">Confirm Payment</button>
+</div>
+
+<div id="detailsOverlay" class="payment-overlay"></div>
+<div id="feeDetailsModal" class="payment-modal">
+    <button class="payment-close-btn" id="closeDetailsModal">&times;</button>
+    <h2>Payment Details Confirmation</h2>
+    <div class="fee-details-content">
+        <div class="detail-row">
+            <span class="detail-label">Fee Title:</span>
+            <span class="detail-value" id="detailFeeTitle"></span>
+        </div>
+        <div class="detail-row">
+            <span class="detail-label">Student Name:</span>
+            <span class="detail-value" id="detailStudentName"></span>
+        </div>
+        <div class="detail-row">
+            <span class="detail-label">Department:</span>
+            <span class="detail-value" id="detailDepartment"></span>
+        </div>
+        <div class="detail-row amount-row">
+            <span class="detail-label">Amount to Pay:</span>
+            <span class="detail-value" id="detailAmount"></span>
+        </div>
+    </div>
+    <button class="payment-btn" id="proceedToPaymentBtn" style="margin-top: 25px;">Proceed to Pay</button>
+</div>
+
+
+<div id="examPaymentOverlay" class="payment-overlay"></div>
+<div id="examPaymentModal" class="payment-modal">
+    <button class="payment-close-btn" id="closeExamPaymentModal">&times;</button>
+    <h2>Exam Fee Payment</h2>
+
+    <div class="fee-details-content">
+        <div class="detail-row">
+            <span class="detail-label">Student Name:</span>
+            <span class="detail-value" id="examPayStudentName"></span>
+        </div>
+        <div class="detail-row">
+            <span class="detail-label">Exam Name:</span>
+            <span class="detail-value" id="examPayExamName"></span>
+        </div>
+        <div class="detail-row amount-row">
+            <span class="detail-label">Amount to Pay:</span>
+            <span class="detail-value" id="examPayAmount"></span>
+        </div>
+    </div>
+    
+    <p style="margin-top: 20px;">Scan the QR code to pay the exam fee.</p>
+    <div class="qr-code-container">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=upi://pay?pa=college.exams@okhdfcbank&pn=Example%20College%20Exams&am=1250.00&cu=INR" alt="QR Code for Exam Payment">
+    </div>
+    
+    <p>After paying, enter your UPI ID for confirmation.</p>
+    <div class="form-group-payment">
+        <label for="examUpiIdConfirm">Your UPI ID</label>
+        <input type="text" id="examUpiIdConfirm" class="form-input" placeholder="example@upi">
+    </div>
+    
+    <button class="payment-btn" id="examConfirmBtn">Proceed Payment</button>
+</div>
+
+<div id="customPopup" class="popup-overlay">
+  <div class="popup-box">
+    <span class="close-btn" onclick="closePopup()">
+      <ion-icon name="close-outline"></ion-icon>
+    </span>
+    <div class="popup-message" id="popupMessage"></div>
+    <button class="popup-ok" onclick="closePopup()">OK</button>
+  </div>
+</div>
+
+  <script src="Javascript/student.js"></script>
+</body>
+</html>

@@ -1,0 +1,706 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+html {
+  /* For smooth scrolling on contact link */
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  /* Fallback background for when scrolling past the video */
+  background-color: #1b1919;
+  overflow-x: hidden;
+}
+
+.hero {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  text-align: center;
+}
+
+#bgvedio {
+  position: absolute;
+  top: 0;
+  left: 0;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+
+/* Popup Overlay */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+/* Popup Box */
+.popup-box {
+  background: #fff;
+  padding: 25px 30px;
+  border-radius: 12px;
+  text-align: center;
+  width: 350px;
+  max-width: 90%;
+  position: relative;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  animation: popIn 0.3s ease;
+}
+
+/* Message */
+.popup-message {
+  font-size: 16px;
+  margin: 15px 0;
+  color: #333;
+}
+
+/* Close Button (X) */
+.close-btn {
+  position: absolute;
+  right: 12px;
+  top: 8px;
+  font-size: 22px;
+  cursor: pointer;
+  color: #777;
+}
+.close-btn:hover { color: #000; }
+
+/* OK Button */
+.popup-ok {
+  background: #007bff;
+  color: #fff;
+  border: none;
+  padding: 8px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 15px;
+}
+.popup-ok:hover { background: #0056b3; }
+
+/* Animation */
+@keyframes popIn {
+  from { transform: scale(0.7); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* Header */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding:20px 70px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 99;
+  backdrop-filter: blur(5px);
+}
+
+.logo {
+  height: 65px;
+}
+
+.hamburger {
+  display: none;
+  font-size: 2rem;
+  color: white;
+  cursor: pointer;
+  z-index: 101;
+}
+
+/* Overlay */
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  z-index: 98;
+  transition: opacity 0.4s ease;
+}
+.overlay.active {
+  display: block;
+  opacity: 1;
+}
+
+/* Navigation */
+.navigation {
+  display: flex;
+  align-items: center;
+}
+
+.navigation a {
+  position: relative;
+  font-size: 1.1em;
+  color: #fff;
+  font-weight: 500;
+  text-decoration: none;
+  margin-left: 40px;
+  opacity: 1;
+}
+
+.navigation a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 100%;
+  height: 3px;
+  background: white;
+  border-radius: 5px;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.5s;
+}
+
+.navigation a:hover::after {
+  transform: scaleX(1);
+}
+
+.navigation .btnLogin-popup {
+  width: 130px;
+  height: 50px;
+  background: transparent;
+  border: 2px solid white;
+  outline: none;
+  border-radius: 6px;
+  font-size: 1.1em;
+  margin-left: 40px;
+  color: white;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.error {
+  color: red;
+  font-size: 12px;
+  margin-top: 4px;
+  display: block;
+}
+
+.navigation .btnLogin-popup:hover {
+  background: white;
+  color: #162938;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hamburger {
+    display: block;
+  }
+  .wrapper {
+    margin-top: 10%;
+    width: 80%;
+  }
+  .navigation {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    height: 100vh;
+    width: 250px;
+    background: rgba(22, 41, 56, 0.95);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    transition: left 0.4s ease;
+    z-index: 100;
+  }
+  .navigation.active {
+    left: 0;
+  }
+  .navigation a,
+  .navigation .btnLogin-popup {
+    margin: 15px 0;
+    font-size: 1.2rem;
+    color: white;
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    text-decoration: none;
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  .navigation a:hover,
+  .navigation .btnLogin-popup:hover {
+    text-decoration: underline;
+  }
+  .navigation.active a,
+  .navigation.active .btnLogin-popup {
+    animation: fadeIn 0.5s forwards;
+  }
+  .navigation.active a:nth-child(1) { animation-delay: 0.2s; }
+  .navigation.active a:nth-child(2) { animation-delay: 0.4s; }
+  .navigation.active a:nth-child(3) { animation-delay: 0.6s; }
+  .navigation.active .btnLogin-popup { animation-delay: 0.8s; }
+
+  @keyframes fadeIn {
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+}
+
+/* Login Form */
+.wrapper {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  max-width: 400px;
+  height: 460px;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 30px rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  transition: transform 0.5s ease, height 0.2s ease;
+  z-index: 100;
+}
+
+.wrapper.active-popup {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.wrapper .form-box {
+  width: 100%;
+  padding: 40px;
+}
+.form-box h2 {
+  font-size: 2em;
+  color: #162938;
+  text-align: center;
+}
+
+.input-box {
+  position: relative;
+  width: 100%;
+  height: 50px;
+  border-bottom: 2px solid #162938;
+  margin: 30px 0;
+}
+
+.input-box label {
+  position: absolute;
+  top: 50%;
+  left: 5px;
+  color: #162938;
+  font-size: 1em;
+  pointer-events: none;
+  transform: translateY(-50%);
+  transition: .5s;
+  font-weight: 500;
+}
+
+.input-box input,
+.input-box select {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 1em;
+  color: #162938;
+  font-weight: 600;
+  padding: 0 35px 0 5px;
+  cursor: pointer;
+  appearance: none;
+}
+
+/* Floating label for input + select */
+.input-box input:focus ~ label,
+.input-box input:valid ~ label,
+.input-box select:focus ~ label,
+.input-box select:valid ~ label {
+  top: -5px;
+  color: #162938;
+  font-size: 0.8em;
+}
+
+.input-box .icon {
+  position: absolute;
+  right: 8px;
+  font-size: 1.2em;
+  color: #162938;
+  line-height: 57px;
+}
+
+.remember-forgot {
+  margin: -15px 0 15px;
+  font-size: 0.9em;
+  color: #162938;
+  font-weight: 500;
+  display: flex;
+  justify-content: space-between;
+}
+.remember-forgot label input {
+  accent-color: #162938;
+  margin-right: 3px;
+}
+
+.btn{
+  width: 100%;
+  height: 45px;
+  background: #162938;
+  border: none;
+  outline: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1em;
+  color: #fff;
+  font-weight: 500;
+}
+
+.login-register {
+  font-size: .9em;
+  color: #162938;
+  text-align: center;
+  font-weight: 500;
+  margin: 25px 0 10px;
+}
+.login-register p a {
+  color: #162938;
+  text-decoration: none;
+  font-weight: 600;
+}
+.login-register p a:hover {
+  text-decoration: underline;
+}
+
+.icon-close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 45px;
+  height: 45px;
+  background: #162938;
+  cursor: pointer;
+  color: #fff;
+  font-size: 2em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom-left-radius: 20px;
+  z-index:1 ;
+}
+
+/* Footer Content */
+.container {
+  margin: 4em auto;
+  font-family: Arial, sans-serif;
+  color: #fff;
+  position: relative;
+}
+
+.main-section {
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.left-column {
+  flex: 1;
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.8em;
+  margin-left: 6%;
+}
+
+.logofooter {
+  width: 70%;
+  height: auto;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.description {
+  font-size: 16px;
+  line-height: 1.8;
+  color: #cec6c6;
+  text-align: justify;
+  margin-right: 1.5em;
+}
+
+.right-column {
+  flex: 1;
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  margin-left: 6em;
+}
+
+.contact-info {
+  display: flex;
+  gap: 100px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.contact-box {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.icon-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.icon-label label {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.1em;
+  font-weight: 700;
+  color: #0195DF;
+}
+
+.icon-label ion-icon {
+  font-size: 22px;
+  background: #222;
+  padding: 8px;
+  border-radius: 50%;
+}
+
+.contact-text {
+  font-size: 15px;
+  color: #fff;
+  margin-left: 50px;
+  transition: color 0.3s, text-decoration 0.3s;
+  cursor: pointer;
+}
+
+.contact-text:hover {
+  color: #4a90e2;
+  text-decoration: none;
+}
+
+@media (max-width: 768px) {
+  .main-section {
+    flex-direction: column;
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .left-column,
+  .right-column {
+    margin: 1rem;
+  }
+  .contact-info {
+    gap: 40px;
+  }
+  .description {
+    margin-right: 0;
+  }
+}
+
+/* Footer Bar */
+.site-footer {
+  background: #1b1919;
+  color: #cfcfcf;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  border-top: 1px solid #333;
+}
+
+
+.footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.socials {
+  display: flex;
+  gap: 14px;
+}
+
+.social {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: #2b3f4f;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #87a9c3;
+  text-decoration: none;
+  transition: transform .15s ease, background .2s ease, color .2s ease;
+}
+
+.social i { font-size: 18px; line-height: 1; }
+
+.social:hover {
+  transform: translateY(-2px);
+  color: #fff;
+  background: #0195DF;
+}
+
+.copyright {
+  margin: 0;
+  font-size: 14px;
+  color: #cfcfcf;
+  text-align: right;
+  white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+  .footer-inner {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 10px;
+  }
+  .copyright {
+    white-space: normal;
+    text-align: center;
+    font-size: 13px;
+  }
+
+  .wrapper{
+    min-height: 100vh;
+    margin-top: 0;
+    width: 90%;
+    min-height: 100%;
+  }
+}
+
+.spinner {
+  border: 2px solid #f3f3f3;
+  border-top: 2px solid #3498db;
+  border-radius: 50%;
+  width: 14px;
+  height: 14px;
+  display: inline-block;
+  margin-right: 6px;
+  animation: spin 1s linear infinite;
+  vertical-align: middle;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+
+/* MODIFIED: Now just a positioning container */
+.heading-college {
+    position: relative;
+    z-index: 1;
+}
+
+/* The text that gets revealed */
+.animated-heading {
+    font-size: 4rem;
+    font-weight: 700;
+    color: #fff;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+    opacity: 0; /* Hidden initially */
+    animation: revealText 0.01s 0.8s forwards;
+    white-space: nowrap;
+    padding: 20px; /* Add padding so box is larger than text */
+}
+
+/* NEW: This is the actual blue box that slides */
+.sliding-box {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #0195DF;
+    z-index: 2; /* Positioned on top of the text */
+    
+    /* Center the logo inside the box */
+    padding-left: 30px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    
+
+    /* Apply animation */
+    transform: translateX(-101%); /* Start off-screen */
+    animation: slideInAndOut 1.5s cubic-bezier(0.7, 0, 0.3, 1) forwards;
+}
+
+/* MODIFIED: Simplified styles for the logo inside the sliding box */
+.sliding-logo {
+    height: 100px;
+    width: auto;
+    border: none;
+}
+
+/* REMOVED: Deleted the heading-college::before rule entirely */
+
+
+@keyframes slideInAndOut {
+    0% {
+        transform: translateX(-101%);
+    }
+    50% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(101%);
+    }
+}
+
+@keyframes revealText {
+    to {
+        opacity: 1;
+    }
+}
+
+/* Adjust responsiveness for heading-college on smaller screens */
+@media (max-width: 900px) {
+    .animated-heading {
+        font-size: 3rem;
+    }
+    .sliding-logo {
+        height: 60px;
+    }
+}
+
+@media (max-width: 600px) {
+    .animated-heading {
+        font-size: 2rem;
+        white-space: normal;
+        padding: 10px;
+    }
+    .sliding-logo {
+        height: 50px;
+    }
+}

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Registration Page</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link href="styles/regpage.css" rel="stylesheet">
+</head>
+<body>
+  <video autoplay muted loop id="bgvedio">
+    <source src="webresources/bgvedio.mp4" type="video/mp4">
+  </video>
+
+  <button class="back-button" onclick="window.history.back()">BacK</button>
+
+  <div class="container">
+    <div class="img-section">
+      <img src="webresources/logo.png" alt="College Logo" />
+      <h1 class="uccollege">Union Christian College<br>Aluva</h1>
+      <button class="know-more-btn" onclick="window.open('https://uccollege.edu.in/about-us/', '_blank')">Know More</button>
+    </div>
+
+    <div class="form-section">
+      <h1> Registration</h1>
+      <div class="progress-bar">
+        <div class="progress" id="progressStatus"></div>
+      </div>
+
+      <div id="regForm" name="regForm">
+
+        <!-- STEP 1 -->
+        <div class="step active" id="step1">
+          <!-- Role Switch -->
+          <div class="role-toggle">
+            <button type="button" id="studentBtn" class="role-btn active">Student</button>
+            <button type="button" id="staffBtn" class="role-btn" >Staff</button>
+          </div>
+
+          <!-- Student Fields -->
+          <div id="studentFields">
+            <div class="form-group">
+              <input type="text" name="fullname" placeholder="Full Name" onkeyup="namevalidation()" required />
+              <span id="fullname-error" class="error-msg"></span>
+            </div>
+            <div class="form-group">
+              <input type="text" name="admission" placeholder="Admission Number" onkeyup="admissionNumber()" required />
+              <span id="admissionno-error" class="error-msg"></span>
+            </div>
+          </div>
+
+          <!-- Staff Fields -->
+          <div id="staffFields" style="display: none;">
+            <div class="form-group">
+              <input type="text" name="staffnameFirst" placeholder="Staff Name" required />
+              <span id="staffname-error" class="error-msg"></span>
+            </div>
+            <div class="form-group">
+              <input type="text" name="staffidFirst" placeholder="Staff ID" required />
+              <span id="staffid-error" class="error-msg"></span>
+            </div>
+          </div>
+
+          <!-- OTP Section -->
+          
+          <button type="button" class="get-otp-btn" id="otpBtn">Get OTP</button>
+          <span id="otpTimer" class="timer-text"></span>
+          <div id="otpSection" style="display: none;">
+            <div class="form-group">
+              <input type="text" name="otp" id="otp" placeholder="Enter OTP" required />
+              <span id="otp-error" class="error-msg"></span>
+            </div>
+            <button type="button" class="nav-btn" id="verifyBtn">Verify</button>
+          </div>
+        </div>
+
+        <!-- STEP 2 (Student) -->
+        <div class="step" id="studentStep2">
+          <div class="form-group">
+            <input type="text" name="name" placeholder="Full Name" readonly />
+          </div>
+          <div class="form-group">
+            <input type="text" name="admissionNo" placeholder="Admission Number" disabled />
+          </div>
+          <div class="form-group">
+            <input type="text" name="registernumber" placeholder="Register Number" disabled />
+          </div>
+          <div class="form-group">
+              <input type="text" name="department" placeholder="Department" disabled />
+          </div>
+          <div class="form-group">
+            <input type="text" name="year" placeholder="Year" disabled />
+          </div>
+          <div class="form-group">
+            <input type="text" name="semester" placeholder="Semester" disabled />
+          </div>
+          <div class="form-group">
+            <input type="text" name="phonenumber" placeholder="Phone Number" disabled />
+          </div>
+          <div class="form-group">
+            <input type="text" name="email" placeholder="Email Address" disabled />
+          </div>
+          <div class="form-group">
+            <input type="text" name="Parentname" placeholder="Parent Name" disabled />
+          </div>
+          <div class="form-group">
+            <input type="text" name="ParentPHNO" placeholder="Parent Phone Number" disabled />
+          </div>
+          <div class="form-group">
+            <textarea name="address" placeholder="Address" disabled></textarea>
+          </div>
+          <button type="button" class="nav-btn" id="nextBtnStudent">Next Step</button>
+        </div>
+
+        <!-- STEP 2 (Staff) -->
+        <div class="step" id="staffStep2">
+          <div class="form-group">
+            <input type="text" name="staffname" placeholder="Staff Name" readonly />
+          </div>
+          <div class="form-group">
+            <input type="text" name="staffid" placeholder="Staff ID" readonly />
+          </div>
+          <div class="form-group">
+            <input type="text" name="staffrole" placeholder="Staff Role" disabled />
+          </div>
+          <div class="form-group">
+              <input type="text" name="staffdepartment" placeholder="Staff Department" disabled />
+          </div>
+          <div class="form-group">
+            <textarea name="staffaddress" placeholder="Address" disabled></textarea>
+          </div>
+          <div class="form-group">
+            <input type="text" name="staffphone" placeholder="Phone Number" disabled />
+          </div>
+          <div class="form-group">
+            <input type="text" name="staffemail" placeholder="Email Address" disabled />
+          </div>
+          <button type="button" class="nav-btn" id="nextBtnStaff">Next Step</button>
+        </div>
+
+        <!-- STEP 3  -->
+        <div class="step" id="step3">
+          <div class="form-group"><input type="text" name="username" placeholder="Username" disabled /></div>
+          <div class="form-group"><input type="password" name="password" placeholder="Password" disabled /></div>
+          <div class="form-group">
+            <input type="password" name="confirm_password" placeholder="Confirm Password" disabled />
+            <span id="password-error" class="error-msg"></span>
+          </div>
+          <div class="form-group custom-file-input">
+            <label for="studentPhoto">Upload Photo</label>
+            <span id="fileName">No file chosen</span>
+            <input type="file" id="studentPhoto" name="userphoto" accept="image/*" disabled onchange="showFileName(this)" />
+            <span id="photo-error" class="error-msg"></span>
+          </div>
+          <div style="display: flex; gap: 15px; justify-content: space-between;">
+            <button type="button" class="nav-btn" id="prevBtn" style="flex: 1;">Previous Step</button>
+            <button type="button" class="submit-btn" id="submit" style="flex: 1;">Submit</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="customPopup" class="popup-overlay">
+    <div class="popup-box">
+      <span class="close-btn" onclick="closePopup()"><ion-icon name="close-outline" ></ion-icon></span>
+      <div class="popup-message" id="popupMessage"></div>
+      <button class="popup-ok" onclick="closePopup()">OK</button>
+    </div>
+  </div>
+
+
+<script src="Javascript/reg.js" ></script>
+</body>
+</html>
